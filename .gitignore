@@ -71,3 +71,5 @@ ts-gen
 patches/mtime-cache.json
 
 /node_modules
+
+node_modules/
