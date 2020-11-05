@@ -5,7 +5,7 @@
 
     <form action="/action_page.php">
       <input type="checkbox" id="Vegetarian" name="Vegetarian" value="Vegetarian">
-      <label for="Vegetarian"> I'm vegetarian'</label><br>
+      <label for="Vegetarian"> I'm vegetarian</label><br>
       <input type="checkbox" id="Vegan" name="Vegan" value="Vegan">
       <label for="Vegan"> I'm vegan</label><br>
       <input type="checkbox" id="GF" name="GF" value="GF">
@@ -13,11 +13,63 @@
       <input type="submit" value="Submit">
     </form>
 
-    <div class="dropdown">
-      <span>Mouse over me</span>
-      <div class="dropdown-content">
-      <p>Hello World!</p>
+    <style>
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 6px 8px;
+        z-index: 1;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+
+    <body>
+      <h1>Bowls</h1>
+      <div class="dropdown">
+        <span>Quinoa Bowl with Halal Chicken and Avocado</span>
+        <div class="dropdown-content">
+          <p>lettuce, quinoa, corn, chicken, black beans, picante sauce,
+            tortilla strips, avocado dressing</p>
+        </div>
       </div>
-    </div>
-    
+      <br>
+      <div class="dropdown">
+        <span>California Bowl</span>
+        <div class="dropdown-content">
+          <p>rice, halal chicken, avocado, red pepper, zucchini,
+            roasted tomatoes, feta, walnuts, olive oil and herb dressing</p>
+        </div>
+      </div>
+      <br>
+
+      <h1>Wraps</h1>
+      <div class="dropdown">
+        <span>Buffalo Chicken</span>
+        <div class="dropdown-content">
+          <p>tomato tortilla, halal chicken, bleu cheese, buffalo sauce,
+            pepperjack cheese, shredded lettuce</p>
+        </div>
+      </div>
+      <br>
+      <div class="dropdown">
+        <span>Caesar Chicken</span>
+        <div class="dropdown-content">
+          <p>flour tortilla, halal chicken, parmesan cheese, caesar dressing,
+            shredded lettuce</p>
+        </div>
+      </div>
+      <br>
+
+
+    </body>
+
 </html>
