@@ -1,14 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
+  <head>
+    <title>Mom's Cafe</title>
+    <style>
+      p {text-align:center}
+      h1 {text-align:center; font-size: 60px}
+      button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        display: block;
+        margin: 0 auto;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 onclick="document.location='menu.html'">Mom's Cafe</h1>
+    <p style="font-size: 30px">
+      Current average wait time: <br>
+      35 minutes
+    </p>
+      <br><br>
+        <button style="text-align:center">
+          Order Now
+        </button>
+      <br><br>
+      <p style="color: red; font-size: 20px">
+        Notice: <br>
+        Ovens currently out of order. <br>
+        Some items may be unavailable
+      </p>
 
-        <p>COMING SOON!</p>
-    </body>
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
 </html>
