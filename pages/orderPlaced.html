@@ -1,10 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
+      <link rel="stylesheet" href="../css/orderPlacedTable.css" type="text/css">
       <title>Order Placed!</title>
     </head>
     <body>
 
-        <p>COMING SOON!</p>
+        <h1>Order Placed!</h1>
+
+        <script>
+          //import '../css/orderPlacedTable.css'
+
+          var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
+          "Fountain Drink"];
+          var prices = ["5.99", "5.99", "1.49"]
+          var table = document.createElement('table'),
+              thead = document.createElement('thead'),
+              tbody = document.createElement('tbody'),
+              th, tr, td;
+
+              table.setAttribute("id", "order");
+
+              //header for the food items
+              th = document.createElement('th');
+              th.innerHTML="Food Item";
+              table.appendChild(th);
+              //header for the prices
+              th = document.createElement('th');
+              th.innerHTML="Price";
+              table.appendChild(th);
+
+              table.appendChild(thead);
+              table.appendChild(tbody);
+
+              document.body.appendChild(table);
+
+              for (var i = 0; i < foodItem.length; i++) {
+                tr = document.createElement('tr');
+
+                //add the foodItem elements to the table column
+                td = document.createElement('td');
+                td.innerHTML = foodItem[i];
+                tr.appendChild(td);
+
+                //add the prices to the other column of the table
+                td = document.createElement('td');
+                td.innerHTML = prices[i];
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+              }
+        </script>
+
+          <script>
+            var total = "Total: ";
+            var price = "13.47";
+            var table = document.createElement('table'),
+                tbody = document.createElement('tbody'),
+                th, tr, td;
+
+                table.appendChild(tbody);
+
+                document.body.appendChild(table);
+
+                tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.innerHTML = total;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerHTML = price;
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+
+          </script>
+
+          <h4>Paid With Meal Swipe and Flex- </h4>
+          <h5>117 Swipes, 292.74 Flex Remaining</h5>
+
+          <h2>Estimated Wait Time: </h2>
+          <h2>27 Minutes</h2>
+
     </body>
 </html>
