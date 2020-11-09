@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Checkout</title>
+  </head>
+  <body>
+
+    <h1>Checkout</h1>
+
+    <script>
+      //This will create the table for the Items
+      var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
+      "Fountain Drink"];
+      var prices = ["5.99", "5.99", "1.49"];
+      var table = document.createElement('table'),
+          thead = document.createElement('thead'),
+          tbody = document.createElement('tbody'),
+          th, tr, td;
+
+          table.setAttribute("id", "order");
+
+          //header for the food items
+          th = document.createElement('th');
+          th.innerHTML="Food Item";
+          table.appendChild(th);
+          //header for the prices
+          th = document.createElement('th');
+          th.innerHTML="Price";
+          table.appendChild(th);
+
+          table.appendChild(thead);
+          table.appendChild(tbody);
+
+          document.body.appendChild(table);
+
+          for (var i = 0; i < foodItem.length; i++) {
+            tr = document.createElement('tr');
+
+            //add the foodItem elements to the table column
+            td = document.createElement('td');
+            td.innerHTML = foodItem[i];
+            tr.appendChild(td);
+
+            //add the prices to the other column of the table
+            td = document.createElement('td');
+            td.setAttribute("id", i)
+            td.innerHTML = prices[i];
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+          }
+    </script>
+
+    <script>
+      var subtotal = "Subtotal: ";
+      var orderTable = document.getElementById('order');
+      var subtotalNumber = 0;
+
+      //get the subtotal number by iterating through the order table, through
+      //the cells containing the prices
+      for (var i = 0; i < orderTable.rows.length; i++) {
+
+        var row = orderTable.rows[i];
+
+        var td = row.getElementsByTagName('td');
+
+        var secondCell = td[1];
+
+        var priceOfItem = secondCell.innerHTML;
+        priceOfItem = parseFloat(priceOfItem);
+
+        subtotalNumber = subtotalNumber + priceOfItem;
+      }
+
+      var table = document.createElement('table'),
+          tbody = document.createElement('tbody'),
+          tr, td;
+
+          table.setAttribute("id", "payTable");
+
+          table.appendChild(tbody);
+
+          document.body.appendChild(table);
+
+          tr = document.createElement('tr');
+          td = document.createElement('td');
+          td.innerHTML = subtotal;
+          tr.appendChild(td);
+
+          td = document.createElement('td');
+          td.innerHTML = subtotalNumber;
+          tr.appendChild(td);
+          tbody.appendChild(tr);
+    </script>
+
+    
+
+  </body>
+</html>
