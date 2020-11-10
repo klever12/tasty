@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../css/checkout.css" type="text/css">
     <title>Checkout</title>
   </head>
   <body>
 
     <h1>Checkout</h1>
 
+    <div class="floating", id="SwipesAvailable">
+      <strong>Swipes: </strong>
+      <p id="swipes">3</p>
+    </div>
+    <div class="floating", id="flexAvailable">
+      <strong>Flex: </strong>
+      <p id="flex">10.50</p>
+    </div>
+    <br> <br>
+
+    <br> <br>
     <script>
       //This will create the table for the Items
       var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
@@ -75,24 +87,216 @@
           tbody = document.createElement('tbody'),
           tr, td;
 
-          table.setAttribute("id", "payTable");
+      table.setAttribute("id", "payTable");
 
-          table.appendChild(tbody);
+      table.appendChild(tbody);
 
-          document.body.appendChild(table);
+      document.body.appendChild(table);
 
-          tr = document.createElement('tr');
-          td = document.createElement('td');
-          td.innerHTML = subtotal;
-          tr.appendChild(td);
+      tr = document.createElement('tr');
+      td = document.createElement('td');
+      td.innerHTML = subtotal;
+      tr.appendChild(td);
 
-          td = document.createElement('td');
-          td.innerHTML = subtotalNumber;
-          tr.appendChild(td);
-          tbody.appendChild(tr);
+      td = document.createElement('td');
+      td.innerHTML = subtotalNumber;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
     </script>
 
-    
+    <script>
+      var total = "Total: ";
+      var payTable = document.getElementById('payTable');
+      var totalNumber = 0;
+
+      //get the total paid by adding the subtotal and the amount paid
+      for (var i = 0; i < payTable.rows.length; i++) {
+
+        var row = payTable.rows[i];
+
+        var td = row.getElementsByTagName('td');
+
+        var secondCell = td[1];
+
+        var subtotal = secondCell.innerHTML;
+        subtotal = parseFloat(subtotal);
+
+        totalNumber = totalNumber + subtotal;
+      }
+
+      var table = document.createElement('table'),
+          tbody = document.createElement('tbody'),
+          tr, td;
+
+      table.setAttribute("id", "totalTable");
+
+      table.appendChild(tbody);
+
+      document.body.appendChild(table);
+
+      tr = document.createElement('tr');
+      td = document.createElement('td');
+      td.innerHTML = total;
+      tr.appendChild(td);
+
+      td = document.createElement('td');
+      td.innerHTML = totalNumber;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    </script>
+
+    <br>
+    <div class="payButtons">
+      <button type="button" id="swipeButton">Pay With Meal Swipe</button>
+      &nbsp;
+      <button type="submit" id="flexButton">Pay With Flex</button>
+    </div>
+
+    <br><br><br>
+    <div class="checkoutButtons">
+      <button type="submit" id="cancel"> Cancel/Return to Menu</button>
+      &nbsp;
+      &nbsp;
+      <button type="submit" id="restartPay">Restart Payment Method(s)</button>
+      <button type="submit" id="placeOrder">Place Order</button>
+    </div>
+
+    <script>
+      //add button functionality for the meal swipe and flex buttons
+      var totalTable = document.getElementById('totalTable');
+      var payTable = document.getElementById('payTable');
+
+
+      document.getElementById("swipeButton").addEventListener("click",
+      function(){
+        console.log('Swipe Button was pushed');
+        var newTotal;
+        var row = totalTable.rows[0];
+        var td = row.getElementsByTagName('td');
+        var secondCell = td[1];
+        var currentTotal = secondCell.innerHTML;
+        var tr, td;
+        var swipe = "1 Meal Swipe ";
+        var mealSwipesRef = document.getElementById("swipes");
+        var swipesAvailable = parseFloat(mealSwipesRef.innerHTML);
+        var newSwipesAvailable;
+
+        if(parseFloat(currentTotal) > 0){
+        if(swipesAvailable > 0){
+          tr = document.createElement('tr');
+          td = document.createElement('td');
+          td.innerHTML = swipe;
+          tr.appendChild(td);
+
+          td = document.createElement('td');
+          td.innerHTML = "7.50";
+          tr.appendChild(td);
+          payTable.getElementsByTagName('tbody')[0].appendChild(tr);
+
+          currentTotal = parseFloat(currentTotal);
+          newTotal = currentTotal - 7.50;
+          newTotal = newTotal.toFixed(2);
+
+          secondCell.innerHTML = newTotal
+
+          newSwipesAvailable = swipesAvailable - 1;
+          newSwipesAvailable = newSwipesAvailable.toFixed(0);
+
+          mealSwipesRef.innerHTML = newSwipesAvailable;
+
+        }
+        else {
+        alert("No Meal Swipes Available")
+        }
+      }
+      else {
+        alert("Amount is Paid")
+      }
+      });
+
+
+      document.getElementById("flexButton").addEventListener("click",
+      function(){
+        console.log('Flex Button was pushed');
+        var newTotal;
+        var row = totalTable.rows[0];
+        var td = row.getElementsByTagName('td');
+        var secondCell = td[1];
+        var currentTotal = secondCell.innerHTML;
+        var tr, td;
+        var flex = "Flex was used ";
+        var flexRef = document.getElementById('flex');
+        var flexAvailable = parseFloat(flexRef.innerHTML);
+        var newFlexAvailable;
+        var amountPaid;
+
+        if(parseFloat(currentTotal) > 0){
+          if (flexAvailable > 0) {
+            if(flexAvailable > parseFloat(currentTotal)){
+              tr = document.createElement('tr');
+              td = document.createElement('td');
+              td.innerHTML = flex;
+              tr.appendChild(td);
+
+              td = document.createElement('td');
+              td.innerHTML = "-" + currentTotal;
+              tr.appendChild(td);
+              payTable.getElementsByTagName('tbody')[0].appendChild(tr);
+
+              amountPaid = parseFloat(currentTotal);
+
+              newFlexAvailable = flexAvailable - amountPaid;
+              newFlexAvailable = newFlexAvailable.toFixed(2);
+
+              secondCell.innerHTML = 0;
+
+              flexRef.innerHTML = newFlexAvailable;
+            }
+            else {
+              tr = document.createElement('td');
+              td = document.createElement('td');
+              td.innerHTML = flex;
+              tr.appendChild(td);
+
+              td = document.createElement('td');
+              td.innerHTML = '-' + flexRef.innerHTML;
+              tr.appendChild(td);
+              payTable.getElementsByTagName('tbody')[0].appendChild(tr);
+
+              newTotal = parseFloat(currentTotal) - flexAvailable;
+              newTotal = newTotal.toFixed(2);
+
+              secondCell.innerHTML = newTotal;
+
+              flexRef.innerHTML = 0;
+            }
+          }
+          else {
+            alert("No Flex Available to Use");
+          }
+        }
+        else {
+          alert("Amount is paid");
+        }
+      });
+
+      document.getElementById("restartPay").addEventListener("click",
+      function(){
+        var row = payTable.rows[0];
+        var td = row.getElementsByTagName('td');
+        var secondCell = td[1];
+        var subtotal = secondCell.innerHTML;
+        var totalTableRow = totalTable.rows[0];
+        var tableCells = totalTableRow.getElementsByTagName('td');
+        var secondTableCell = tableCells[1];
+
+        for (var i = 1; i < payTable.rows.length; i++) {
+          payTable.deleteRow(i);
+        }
+
+        secondTableCell.innerHTML = subtotal;
+      });    
+    </script>
 
   </body>
 </html>
