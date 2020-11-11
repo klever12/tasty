@@ -165,6 +165,8 @@
       //add button functionality for the meal swipe and flex buttons
       var totalTable = document.getElementById('totalTable');
       var payTable = document.getElementById('payTable');
+      var startSwipes = document.getElementById('swipes').innerHTML;
+      var startFlex = document.getElementById('flex').innerHTML;
 
 
       document.getElementById("swipeButton").addEventListener("click",
@@ -253,7 +255,7 @@
               flexRef.innerHTML = newFlexAvailable;
             }
             else {
-              tr = document.createElement('td');
+              tr = document.createElement('tr');
               td = document.createElement('td');
               td.innerHTML = flex;
               tr.appendChild(td);
@@ -290,12 +292,41 @@
         var tableCells = totalTableRow.getElementsByTagName('td');
         var secondTableCell = tableCells[1];
 
-        for (var i = 1; i < payTable.rows.length; i++) {
-          payTable.deleteRow(i);
-        }
+        if (payTable.rows.length > 1){
+          var numberOfRows = payTable.rows.length;
 
-        secondTableCell.innerHTML = subtotal;
-      });    
+          while (numberOfRows > 1) {
+            payTable.deleteRow(numberOfRows - 1);
+            numberOfRows = numberOfRows - 1;
+          }
+
+          secondTableCell.innerHTML = subtotal;
+
+          document.getElementById('swipes').innerHTML = startSwipes;
+          document.getElementById('flex').innerHTML = startFlex
+
+        }
+        else {
+          alert("No Payment Methods Used Yet")
+        }
+      });
+
+      document.getElementById("placeOrder").addEventListener("click",
+      function(){
+        var row = totalTable.rows[0];
+        var td = row.getElementsByTagName('td');
+        var secondCell = td[1];
+        var total = secondCell.innerHTML;
+
+        total = parseFloat(total);
+
+        if (total > 0) {
+          alert("Order has not been paid for yet")
+        }
+        else {
+          document.location.href = 'orderPlaced.html';
+        }
+      });
     </script>
 
   </body>
