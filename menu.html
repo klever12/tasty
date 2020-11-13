@@ -3,7 +3,22 @@
   <head>
     <title>Mom's Cafe</title>
 
-    <form action="/action_page.php">
+    <script>
+      function handleData()
+      {
+        var form_data = new FormData(document.querySelector("form"));
+        console.log("form data: ");
+        for(var pair of form_data.entries())
+        {
+            console.log(pair[0]+ ' : '+ pair[1]);
+        }
+      return true;
+      }
+    </script>
+
+
+
+    <form action="/action_page.php" method=post onsubmit="return handleData()">
       <input type="checkbox" id="Vegetarian" name="Vegetarian" value="Vegetarian">
       <label for="Vegetarian"> I'm vegetarian</label><br>
       <input type="checkbox" id="Vegan" name="Vegan" value="Vegan">
@@ -33,6 +48,14 @@
     </style>
 
     <body>
+      <br><br>
+      <div class="dropdown">
+        <span>Soup of the Day</span>
+        <div class="dropdown-content">
+          <p>soup type goes here</p>
+        </div>
+      </div>
+
       <h1>Bowls</h1>
       <div class="dropdown">
         <span>Quinoa Bowl with Halal Chicken and Avocado</span>
@@ -41,7 +64,7 @@
             tortilla strips, avocado dressing</p>
         </div>
       </div>
-      <br>
+      <br><br>
       <div class="dropdown">
         <span>California Bowl</span>
         <div class="dropdown-content">
@@ -49,7 +72,22 @@
             roasted tomatoes, feta, walnuts, olive oil and herb dressing</p>
         </div>
       </div>
-      <br>
+      <br><br>
+      <div class="dropdown">
+        <span>Sweet Potato and Chickpea Bowl</span>
+        <div class="dropdown-content">
+          <p>rice, sweet potatoes, kale, broccoli, red onion, chickpeas,
+            tahini maple dressing</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Plantain Bowl</span>
+        <div class="dropdown-content">
+          <p>rice, lettuce, bacon, hard boiled egg, avocado, plantian,
+            cilantro</p>
+        </div>
+      </div>
 
       <h1>Wraps</h1>
       <div class="dropdown">
@@ -59,7 +97,7 @@
             pepperjack cheese, shredded lettuce</p>
         </div>
       </div>
-      <br>
+      <br><br>
       <div class="dropdown">
         <span>Caesar Chicken</span>
         <div class="dropdown-content">
@@ -67,10 +105,162 @@
             shredded lettuce</p>
         </div>
       </div>
-      <br>
+      <br><br>
+      <div class="dropdown">
+        <span>Hummus and Veggie</span>
+        <div class="dropdown-content">
+          <p>tomato tortilla, roasted red pepper hummus, shredded lettuce,
+            black olives, banana peppers, red pepper</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Mediterranean Veggie</span>
+        <div class="dropdown-content">
+          <p>flour tortilla, leaf lettuce, tomato, red onion, feta cheese,
+            roasted red pepper, cucumber, roasted red pepper hummus</p>
+        </div>
+      </div>
 
       <h1>Pizzas</h1>
+      <div class="dropdown">
+        <span>Greek</span>
+        <div class="dropdown-content">
+          <p>naan flat bread, olive oil, spinach, chicken, red onions,
+            roasted red peppers, kalamata olives, feta cheese</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Caprese</span>
+        <div class="dropdown-content">
+          <p>naan flat bread, marinara sauce, mozzerella cheese, basil,
+            balsamic glaze</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Vegan Hummus and Vegetable</span>
+        <div class="dropdown-content">
+          <p>naan flat bread, roasted red pepper hummus, spinach,
+            roasted red peppers, red onions, black olives, olive oil </p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Pepperoni</span>
+        <div class="dropdown-content">
+          <p>naan flat bread, marinara sauce, mozzerella cheese, pepperoni</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Meat Lovers</span>
+        <div class="dropdown-content">
+          <p>naan flat bread, marinara sauce, mozzerella cheese, salami,
+            pepperoni, meatballs</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Vegetable</span>
+        <div class="dropdown-content">
+          <p>naan flat bread, marinara sauce, mozzerella cheese,
+            roasted red pepper, red onions, black beans, banana peppers</p>
+        </div>
+      </div>
 
+      <h1>Salads</h1>
+      <div class="dropdown">
+        <span>Vegan Fiesta</span>
+        <div class="dropdown-content">
+          <p>romaine lettuce, black beans, banana peppers, red peppers,
+            black olives, red onions, tomatoes, dressing of choice</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Sesame Chicken</span>
+        <div class="dropdown-content">
+          <p>romaine lettuce, sliced almonds, red peppers, chow mein noodles,
+            fried wontons, toasted sesame dressing</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Sante Fe Chicken</span>
+        <div class="dropdown-content">
+          <p>romaine lettuce, halal chicken with cajun seasoning, tomatoes,
+            red onions, corn, black beans, black olives,
+            shredded cheddar cheese, red pepper, chipotle ranch dressing</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Strawberry and Feta Salad</span>
+        <div class="dropdown-content">
+          <p>romaine lettuce, halal chicken, strawberries, feta cheese,
+            raspberry vinaigrette</p>
+        </div>
+      </div>
+
+      <h1>Sandwiches</h1>
+      <div class="dropdown">
+        <span>Vegan Chicken Philly</span>
+        <div class="dropdown-content">
+          <p>hoagie roll, pulled oats with montreal seasoning,
+            peppers and onions, soy mozzerella cheese</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Chicken Philly</span>
+        <div class="dropdown-content">
+          <p>hoagie roll, hala chicken, peppers and onions, provolone cheese</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Vegan Meatball Sub</span>
+        <div class="dropdown-content">
+          <p>hoagie roll, vegan meatballs, marinara sauce, provolone cheese,
+            grated parmesan cheese</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Italian Sub</span>
+        <div class="dropdown-content">
+          <p>hoagie roll, ham, salalmi, pepperoni, banana peppers,
+            provolone cheese, lettuce, golden italian dressing,
+            italian spice seasoning</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Caprese Sandwich</span>
+        <div class="dropdown-content">
+          <p>ciabatta bread, olive oil, balsamic glaze, fresh mozzerella cheese,
+             tomatoes, basil</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="dropdown">
+        <span>Smoked Turckey and Cheddar Sub</span>
+        <div class="dropdown-content">
+          <p>hoagie roll, smoked turkey, cheddar cheese, shredded lettuce</p>
+        </div>
+      </div>
+
+      <h1>Sides</h1>
+      <p>Fresh Whole Fruit</p>
+      <p>Fresh Fruit Cup</p>
+      <p>Yogurt Parfait</p>
+
+      <h1>Beverages</h1>
+      <p>Fountain Drink</p>
+      <p>Smoothie</p>
+      <p>Custom Green Tea</p>
 
     </body>
 
