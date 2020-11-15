@@ -4,34 +4,150 @@
     <title>Mom's Cafe</title>
 
     <script>
-      function handleData()
+
+      var VTchecked = 0
+      var VNchecked = 0
+      var GFchecked = 0
+
+      var nonVT = ["b1", "b2", "b4", "w1", "w2", "p1", "p4", "p5", "sl2", "sl3",
+      "sn2", "sn4", "sn5", "sn7"]
+      var nonVN = ["b1", "b2", "b4", "w1", "w2", "p1", "p4", "p5", "sl2", "sl3",
+      "sn2", "sn4", "sn5", "sn7", "w4", "p2", "sl4", "sn6"]
+      var nonGF = ["w1", "w2", "w3", "w4", "p1", "p2", "p3", "p4", "p5", "p6",
+      "sl2", "sn1", "sn2", "sn3", "sn4", "sn5", "sn6", "sn7"]
+      var nonVTandGF = ["w3", "w4", "p2", "p3", "p6", "sn1", "sn3", "sn6"]
+
+      function removeVT(cb)
       {
-        var form_data = new FormData(document.querySelector("form"));
-        console.log("form data: ");
-        for(var pair of form_data.entries())
+        VTchecked = 1 - VTchecked
+        if (VTchecked)
         {
-            console.log(pair[0]+ ' : '+ pair[1]);
+          for (i = 0; i < nonVT.length; i++)
+          {
+            var x = document.getElementById(nonVT[i]);
+            x.style.display = "none";
+          }
         }
-      return true;
+        else
+        {
+          for (i = 0; i < nonVT.length; i++)
+          {
+            var x = document.getElementById(nonVT[i]);
+            x.style.display = "block";
+          }
+          if (GFchecked)
+          {
+            for (i = 0; i < nonGF.length; i++)
+            {
+              var x = document.getElementById(nonGF[i]);
+              x.style.display = "none";
+            }
+          }
+          if (VNchecked)
+          {
+            for (i = 0; i < nonVN.length; i++)
+            {
+              var x = document.getElementById(nonVN[i]);
+              x.style.display = "none";
+            }
+          }
+        }
       }
+
+      function removeVN(cb)
+      {
+        VNchecked = 1 - VNchecked
+        if (VNchecked)
+        {
+          for (i = 0; i < nonVN.length; i++)
+          {
+            var x = document.getElementById(nonVN[i]);
+            x.style.display = "none";
+          }
+        }
+        else
+        {
+          for (i = 0; i < nonVN.length; i++)
+          {
+            var x = document.getElementById(nonVN[i]);
+            x.style.display = "block";
+          }
+          if (GFchecked)
+          {
+            for (i = 0; i < nonGF.length; i++)
+            {
+              var x = document.getElementById(nonGF[i]);
+              x.style.display = "none";
+            }
+          }
+          if (VTchecked)
+          {
+            for (i = 0; i < nonVT.length; i++)
+            {
+              var x = document.getElementById(nonVT[i]);
+              x.style.display = "none";
+            }
+          }
+        }
+      }
+
+      function removeGF(cb)
+      {
+        GFchecked = 1 - GFchecked
+        if (GFchecked)
+        {
+          for (i = 0; i < nonGF.length; i++)
+          {
+            var x = document.getElementById(nonGF[i]);
+            x.style.display = "none";
+          }
+        }
+        else
+        {
+          for (i = 0; i < nonGF.length; i++)
+          {
+            var x = document.getElementById(nonGF[i]);
+            x.style.display = "block";
+          }
+          if (VNchecked)
+          {
+            for (i = 0; i < nonVN.length; i++)
+            {
+              var x = document.getElementById(nonVN[i]);
+              x.style.display = "none";
+            }
+          }
+          if (VTchecked)
+          {
+            for (i = 0; i < nonVT.length; i++)
+            {
+              var x = document.getElementById(nonVT[i]);
+              x.style.display = "none";
+            }
+          }
+        }
+      }
+
+
     </script>
 
-
-
-    <form action="/action_page.php" method=post onsubmit="return handleData()">
-      <input type="checkbox" id="Vegetarian" name="Vegetarian" value="Vegetarian">
+    <form action="/action_page.php">
+      <input type="checkbox" id="Vegetarian" name="Vegetarian" value="Vegetarian"
+        onclick= "removeVT(this)">
       <label for="Vegetarian"> I'm vegetarian</label><br>
-      <input type="checkbox" id="Vegan" name="Vegan" value="Vegan">
+      <input type="checkbox" id="Vegan" name="Vegan" value="Vegan"
+        onclick= "removeVN(this)">
       <label for="Vegan"> I'm vegan</label><br>
-      <input type="checkbox" id="GF" name="GF" value="GF">
+      <input type="checkbox" id="GF" name="GF" value="GF"
+        onclick= "removeGF(this)">
       <label for="GF"> I'm gluten free</label><br><br>
-      <input type="submit" value="Submit">
     </form>
 
     <style>
       .dropdown {
         position: relative;
-        display: inline-block;
+        display: block;
+        padding: 20px
       }
       .dropdown-content {
         display: none;
@@ -50,71 +166,74 @@
     <body>
       <br><br>
       <div class="dropdown">
-        <span>Soup of the Day</span>
+        <span> Soup of the Week <span style="float:right;"> $3.99 </span></span>
         <div class="dropdown-content">
           <p>soup type goes here</p>
         </div>
       </div>
 
       <h1>Bowls</h1>
-      <div class="dropdown">
-        <span>Quinoa Bowl with Halal Chicken and Avocado</span>
+      <div class="dropdown" id=b1>
+        <span>Quinoa Bowl with Halal Chicken and Avocado
+          <span style="float:right;"> $7.99 </span></span>
         <div class="dropdown-content">
           <p>lettuce, quinoa, corn, chicken, black beans, picante sauce,
             tortilla strips, avocado dressing</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
-        <span>California Bowl</span>
+
+      <div class="dropdown" id=b2>
+        <span>California Bowl <span style="float:right;"> $7.99 </span></span>
         <div class="dropdown-content">
           <p>rice, halal chicken, avocado, red pepper, zucchini,
             roasted tomatoes, feta, walnuts, olive oil and herb dressing</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
-        <span>Sweet Potato and Chickpea Bowl</span>
+
+      <div class="dropdown" id=b3>
+        <span>Sweet Potato and Chickpea Bowl
+          <span style="float:right;"> $5.99 </span></span>
         <div class="dropdown-content">
           <p>rice, sweet potatoes, kale, broccoli, red onion, chickpeas,
             tahini maple dressing</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
-        <span>Plantain Bowl</span>
+
+      <div class="dropdown" id=b4>
+        <span>Plantain Bowl <span style="float:right;"> $5.99 </span></span>
         <div class="dropdown-content">
           <p>rice, lettuce, bacon, hard boiled egg, avocado, plantian,
             cilantro</p>
         </div>
       </div>
 
-      <h1>Wraps</h1>
-      <div class="dropdown">
+
+      <h1>Wraps <span style="float:right;"> $5.99 </span> </h1>
+      <div class="dropdown" id=w1>
         <span>Buffalo Chicken</span>
         <div class="dropdown-content">
           <p>tomato tortilla, halal chicken, bleu cheese, buffalo sauce,
             pepperjack cheese, shredded lettuce</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=w2>
         <span>Caesar Chicken</span>
         <div class="dropdown-content">
           <p>flour tortilla, halal chicken, parmesan cheese, caesar dressing,
             shredded lettuce</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=w3>
         <span>Hummus and Veggie</span>
         <div class="dropdown-content">
           <p>tomato tortilla, roasted red pepper hummus, shredded lettuce,
             black olives, banana peppers, red pepper</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=w4>
         <span>Mediterranean Veggie</span>
         <div class="dropdown-content">
           <p>flour tortilla, leaf lettuce, tomato, red onion, feta cheese,
@@ -122,47 +241,48 @@
         </div>
       </div>
 
-      <h1>Pizzas</h1>
-      <div class="dropdown">
+
+      <h1>Pizzas <span style="float:right;"> $6.99 </span> </h1>
+      <div class="dropdown" id=p1>
         <span>Greek</span>
         <div class="dropdown-content">
           <p>naan flat bread, olive oil, spinach, chicken, red onions,
             roasted red peppers, kalamata olives, feta cheese</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=p2>
         <span>Caprese</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese, basil,
             balsamic glaze</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=p3>
         <span>Vegan Hummus and Vegetable</span>
         <div class="dropdown-content">
           <p>naan flat bread, roasted red pepper hummus, spinach,
             roasted red peppers, red onions, black olives, olive oil </p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=p4>
         <span>Pepperoni</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese, pepperoni</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=p5>
         <span>Meat Lovers</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese, salami,
             pepperoni, meatballs</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=p6>
         <span>Vegetable</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese,
@@ -170,65 +290,76 @@
         </div>
       </div>
 
+
       <h1>Salads</h1>
-      <div class="dropdown">
-        <span>Vegan Fiesta</span>
+      <div class="dropdown" id=sl1>
+        <span>Vegan Fiesta <span style="float:right;"> $5.39 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, black beans, banana peppers, red peppers,
             black olives, red onions, tomatoes, dressing of choice</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
-        <span>Sesame Chicken</span>
+
+      <div class="dropdown" id=sl2>
+        <span>Sesame Chicken <span style="float:right;"> $5.29 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, sliced almonds, red peppers, chow mein noodles,
             fried wontons, toasted sesame dressing</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
-        <span>Sante Fe Chicken</span>
+
+      <div class="dropdown" id=sl3>
+        <span>Sante Fe Chicken <span style="float:right;"> $6.99 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, halal chicken with cajun seasoning, tomatoes,
             red onions, corn, black beans, black olives,
             shredded cheddar cheese, red pepper, chipotle ranch dressing</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
-        <span>Strawberry and Feta Salad</span>
+
+      <div class="dropdown" id=sl4>
+        <span>Strawberry and Feta Salad
+          <span style="float:right;"> $5.99 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, halal chicken, strawberries, feta cheese,
             raspberry vinaigrette</p>
         </div>
       </div>
 
-      <h1>Sandwiches</h1>
-      <div class="dropdown">
+
+      <h1>Sandwiches <span style="float:right;"> $6.49 </span></h1>
+      <div class="dropdown" id=sn1>
         <span>Vegan Chicken Philly</span>
         <div class="dropdown-content">
           <p>hoagie roll, pulled oats with montreal seasoning,
             peppers and onions, soy mozzerella cheese</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=sn2>
         <span>Chicken Philly</span>
         <div class="dropdown-content">
           <p>hoagie roll, hala chicken, peppers and onions, provolone cheese</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=sn3>
         <span>Vegan Meatball Sub</span>
         <div class="dropdown-content">
-          <p>hoagie roll, vegan meatballs, marinara sauce, provolone cheese,
+          <p>hoagie roll, vegan meatballs, marinara sauce,
+            soy mozzerella cheese</p>
+        </div>
+      </div>
+
+      <div class="dropdown" id=sn4>
+        <span>Meatball Sub</span>
+        <div class="dropdown-content">
+          <p>hoagie roll, italian meatballs, marinara sauce, provolone cheese,
             grated parmesan cheese</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=sn5>
         <span>Italian Sub</span>
         <div class="dropdown-content">
           <p>hoagie roll, ham, salalmi, pepperoni, banana peppers,
@@ -236,31 +367,33 @@
             italian spice seasoning</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=sn6>
         <span>Caprese Sandwich</span>
         <div class="dropdown-content">
           <p>ciabatta bread, olive oil, balsamic glaze, fresh mozzerella cheese,
              tomatoes, basil</p>
         </div>
       </div>
-      <br><br>
-      <div class="dropdown">
+
+      <div class="dropdown" id=sn7>
         <span>Smoked Turckey and Cheddar Sub</span>
         <div class="dropdown-content">
           <p>hoagie roll, smoked turkey, cheddar cheese, shredded lettuce</p>
         </div>
       </div>
 
+
       <h1>Sides</h1>
-      <p>Fresh Whole Fruit</p>
-      <p>Fresh Fruit Cup</p>
-      <p>Yogurt Parfait</p>
+      <p>Fresh Whole Fruit <span style="float:right;"> $0.50 </span></p>
+      <p>Fresh Fruit Cup <span style="float:right;"> $3.99 </span></p>
+      <p>Yogurt Parfait <span style="float:right;"> $3.99 </span></p>
+      <p>Side Salad <span style="float:right;"> $2.99 </span></p>
 
       <h1>Beverages</h1>
-      <p>Fountain Drink</p>
-      <p>Smoothie</p>
-      <p>Custom Green Tea</p>
+      <p>Fountain Drink <span style="float:right;"> $1.49 </span></p>
+      <p>Smoothie <span style="float:right;"> $4.49 </span></p>
+      <p>Custom Green Tea <span style="float:right;"> $2.99 </span></p>
 
     </body>
 
