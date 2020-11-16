@@ -12,10 +12,10 @@
       var nonVT = ["b1", "b2", "b4", "w1", "w2", "p1", "p4", "p5", "sl2", "sl3",
       "sn2", "sn4", "sn5", "sn7"]
       var nonVN = ["b1", "b2", "b4", "w1", "w2", "p1", "p4", "p5", "sl2", "sl3",
-      "sn2", "sn4", "sn5", "sn7", "w4", "p2", "sl4", "sn6"]
+      "sn2", "sn4", "sn5", "sn7", "w4", "p2", "sl4", "sn6", "y"]
       var nonGF = ["w1", "w2", "w3", "w4", "p1", "p2", "p3", "p4", "p5", "p6",
       "sl2", "sn1", "sn2", "sn3", "sn4", "sn5", "sn6", "sn7"]
-      var nonVTandGF = ["w3", "w4", "p2", "p3", "p6", "sn1", "sn3", "sn6"]
+
 
       function removeVT(cb)
       {
@@ -128,6 +128,17 @@
         }
       }
 
+      var order = {};
+
+      function addtoOrder(dish, price)
+      {
+        order[dish] = price;
+      }
+
+      function sendOrder()
+      {
+        ipcRenderer.send('order', order);
+      }
 
     </script>
 
@@ -164,8 +175,13 @@
     </style>
 
     <body>
+      <button onclick="sendOrder()", style="text-align:center">
+        Go
+      </button>
+
       <br><br>
-      <div class="dropdown">
+      <div class="dropdown" onclick=
+        "addtoOrder('Soup', '3.99')">
         <span> Soup of the Week <span style="float:right;"> $3.99 </span></span>
         <div class="dropdown-content">
           <p>soup type goes here</p>
@@ -173,7 +189,8 @@
       </div>
 
       <h1>Bowls</h1>
-      <div class="dropdown" id=b1>
+      <div class="dropdown" id=b1 onclick=
+        "addtoOrder('Quinoa Bowl with Halal Chicken and Avocado', '7.99')">
         <span>Quinoa Bowl with Halal Chicken and Avocado
           <span style="float:right;"> $7.99 </span></span>
         <div class="dropdown-content">
@@ -182,7 +199,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=b2>
+      <div class="dropdown" id=b2 onclick=
+        "addtoOrder('California Bowl', '7.99')">
         <span>California Bowl <span style="float:right;"> $7.99 </span></span>
         <div class="dropdown-content">
           <p>rice, halal chicken, avocado, red pepper, zucchini,
@@ -190,7 +208,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=b3>
+      <div class="dropdown" id=b3 onclick=
+        "addtoOrder('Sweet Potato and Chickpea Bowl', '5.99')">
         <span>Sweet Potato and Chickpea Bowl
           <span style="float:right;"> $5.99 </span></span>
         <div class="dropdown-content">
@@ -199,7 +218,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=b4>
+      <div class="dropdown" id=b4 onclick=
+        "addtoOrder('Plantain Bowl', '5.99')">
         <span>Plantain Bowl <span style="float:right;"> $5.99 </span></span>
         <div class="dropdown-content">
           <p>rice, lettuce, bacon, hard boiled egg, avocado, plantian,
@@ -209,7 +229,8 @@
 
 
       <h1>Wraps <span style="float:right;"> $5.99 </span> </h1>
-      <div class="dropdown" id=w1>
+      <div class="dropdown" id=w1 onclick=
+        "addtoOrder('Buffalo Chicken', '5.99')">
         <span>Buffalo Chicken</span>
         <div class="dropdown-content">
           <p>tomato tortilla, halal chicken, bleu cheese, buffalo sauce,
@@ -217,7 +238,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=w2>
+      <div class="dropdown" id=w2 onclick=
+        "addtoOrder('Caesar Chicken', '5.99')">
         <span>Caesar Chicken</span>
         <div class="dropdown-content">
           <p>flour tortilla, halal chicken, parmesan cheese, caesar dressing,
@@ -225,7 +247,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=w3>
+      <div class="dropdown" id=w3 onclick=
+        "addtoOrder('Hummus and Veggie', '5.99')">
         <span>Hummus and Veggie</span>
         <div class="dropdown-content">
           <p>tomato tortilla, roasted red pepper hummus, shredded lettuce,
@@ -233,7 +256,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=w4>
+      <div class="dropdown" id=w4 onclick=
+        "addtoOrder('Mediterranean Veggie', '5.99')">
         <span>Mediterranean Veggie</span>
         <div class="dropdown-content">
           <p>flour tortilla, leaf lettuce, tomato, red onion, feta cheese,
@@ -243,7 +267,8 @@
 
 
       <h1>Pizzas <span style="float:right;"> $6.99 </span> </h1>
-      <div class="dropdown" id=p1>
+      <div class="dropdown" id=p1 onclick=
+        "addtoOrder('Greek', '6.99')">
         <span>Greek</span>
         <div class="dropdown-content">
           <p>naan flat bread, olive oil, spinach, chicken, red onions,
@@ -251,7 +276,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=p2>
+      <div class="dropdown" id=p2 onclick=
+        "addtoOrder('Caprese', '6.99')">
         <span>Caprese</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese, basil,
@@ -259,7 +285,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=p3>
+      <div class="dropdown" id=p3 onclick=
+        "addtoOrder('Vegan Hummus and Vegetable', '6.99')">
         <span>Vegan Hummus and Vegetable</span>
         <div class="dropdown-content">
           <p>naan flat bread, roasted red pepper hummus, spinach,
@@ -267,14 +294,16 @@
         </div>
       </div>
 
-      <div class="dropdown" id=p4>
+      <div class="dropdown" id=p4 onclick=
+        "addtoOrder('Pepperoni', '6.99')">
         <span>Pepperoni</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese, pepperoni</p>
         </div>
       </div>
 
-      <div class="dropdown" id=p5>
+      <div class="dropdown" id=p5 onclick=
+        "addtoOrder('Meat Lovers', '6.99')">
         <span>Meat Lovers</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese, salami,
@@ -282,7 +311,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=p6>
+      <div class="dropdown" id=p6 onclick=
+        "addtoOrder('Vegetable', '6.99')">
         <span>Vegetable</span>
         <div class="dropdown-content">
           <p>naan flat bread, marinara sauce, mozzerella cheese,
@@ -292,7 +322,8 @@
 
 
       <h1>Salads</h1>
-      <div class="dropdown" id=sl1>
+      <div class="dropdown" id=sl1 onclick=
+        "addtoOrder('Vegan Fiestaegan Fiesta', '5.39')">
         <span>Vegan Fiesta <span style="float:right;"> $5.39 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, black beans, banana peppers, red peppers,
@@ -300,7 +331,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sl2>
+      <div class="dropdown" id=sl2 onclick=
+        "addtoOrder('Sesame Chicken', '5.29')">
         <span>Sesame Chicken <span style="float:right;"> $5.29 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, sliced almonds, red peppers, chow mein noodles,
@@ -308,7 +340,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sl3>
+      <div class="dropdown" id=sl3 onclick=
+        "addtoOrder('Sante Fe Chicken', '6.99')">
         <span>Sante Fe Chicken <span style="float:right;"> $6.99 </span></span>
         <div class="dropdown-content">
           <p>romaine lettuce, halal chicken with cajun seasoning, tomatoes,
@@ -317,7 +350,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sl4>
+      <div class="dropdown" id=sl4 onclick=
+        "addtoOrder('Strawberry and Feta Salad', '5.99')">
         <span>Strawberry and Feta Salad
           <span style="float:right;"> $5.99 </span></span>
         <div class="dropdown-content">
@@ -328,7 +362,8 @@
 
 
       <h1>Sandwiches <span style="float:right;"> $6.49 </span></h1>
-      <div class="dropdown" id=sn1>
+      <div class="dropdown" id=sn1 onclick=
+        "addtoOrder('Vegan Chicken Philly', '6.49')">
         <span>Vegan Chicken Philly</span>
         <div class="dropdown-content">
           <p>hoagie roll, pulled oats with montreal seasoning,
@@ -336,14 +371,16 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sn2>
+      <div class="dropdown" id=sn2 onclick=
+        "addtoOrder('Chicken Philly', '6.49')">
         <span>Chicken Philly</span>
         <div class="dropdown-content">
           <p>hoagie roll, hala chicken, peppers and onions, provolone cheese</p>
         </div>
       </div>
 
-      <div class="dropdown" id=sn3>
+      <div class="dropdown" id=sn3 onclick=
+        "addtoOrder('Vegan Meatball Sub', '6.49')">
         <span>Vegan Meatball Sub</span>
         <div class="dropdown-content">
           <p>hoagie roll, vegan meatballs, marinara sauce,
@@ -351,7 +388,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sn4>
+      <div class="dropdown" id=sn4 onclick=
+        "addtoOrder('Meatball Sub', '6.49')">
         <span>Meatball Sub</span>
         <div class="dropdown-content">
           <p>hoagie roll, italian meatballs, marinara sauce, provolone cheese,
@@ -359,7 +397,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sn5>
+      <div class="dropdown" id=sn5 onclick=
+        "addtoOrder('Italian Sub', '6.49')">
         <span>Italian Sub</span>
         <div class="dropdown-content">
           <p>hoagie roll, ham, salalmi, pepperoni, banana peppers,
@@ -368,7 +407,8 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sn6>
+      <div class="dropdown" id=sn6 onclick=
+        "addtoOrder('Caprese Sandwich', '6.49')">
         <span>Caprese Sandwich</span>
         <div class="dropdown-content">
           <p>ciabatta bread, olive oil, balsamic glaze, fresh mozzerella cheese,
@@ -376,8 +416,9 @@
         </div>
       </div>
 
-      <div class="dropdown" id=sn7>
-        <span>Smoked Turckey and Cheddar Sub</span>
+      <div class="dropdown" id=sn7 onclick=
+        "addtoOrder('Smoked Turkey and Cheddar Sub', '6.49')">
+        <span>Smoked Turkey and Cheddar Sub</span>
         <div class="dropdown-content">
           <p>hoagie roll, smoked turkey, cheddar cheese, shredded lettuce</p>
         </div>
@@ -385,15 +426,47 @@
 
 
       <h1>Sides</h1>
-      <p>Fresh Whole Fruit <span style="float:right;"> $0.50 </span></p>
-      <p>Fresh Fruit Cup <span style="float:right;"> $3.99 </span></p>
-      <p>Yogurt Parfait <span style="float:right;"> $3.99 </span></p>
-      <p>Side Salad <span style="float:right;"> $2.99 </span></p>
+      <div class="dropdown" onclick=
+        "addtoOrder('Fresh Whole Fruit', '0.50')">
+        <span>Fresh Whole Fruit
+          <span style="float:right;"> $0.50 </span></span>
+      </div>
+      <div class="dropdown" onclick=
+        "addtoOrder('Fresh Fruit Cup', '3.99')">
+        <span>Fresh Fruit Cup
+          <span style="float:right;"> $3.99 </span></span>
+      </div>
+      <div class="dropdown" id=y onclick=
+        "addtoOrder('Yogurt Parfait', '3.99')">
+        <span>Yogurt Parfait
+          <span style="float:right;"> $3.99 </span></span>
+      </div>
+      <div class="dropdown" onclick=
+        "addtoOrder('Side Salad', '2.99')">
+        <span>Side Salad
+          <span style="float:right;"> $2.99 </span></span>
+      </div>
 
       <h1>Beverages</h1>
-      <p>Fountain Drink <span style="float:right;"> $1.49 </span></p>
-      <p>Smoothie <span style="float:right;"> $4.49 </span></p>
-      <p>Custom Green Tea <span style="float:right;"> $2.99 </span></p>
+      <div class="dropdown" onclick=
+        "addtoOrder('Fountain Drink', '1.49')">
+        <span>Fountain Drink
+          <span style="float:right;"> $1.49 </span></span>
+      </div>
+      <div class="dropdown" onclick=
+        "addtoOrder('Smoothie', '4.49')">
+        <span>Smoothie
+          <span style="float:right;"> $4.49 </span></span>
+      </div>
+      <div class="dropdown" onclick=
+        "addtoOrder('Custom Green Tea', '2.29')">
+        <span>Custom Green Tea
+          <span style="float:right;"> $2.29 </span></span>
+      </div>
+
+      <button onclick="sendOrder()", style="text-align:center">
+        Go
+      </button>
 
     </body>
 
