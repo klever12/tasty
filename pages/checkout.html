@@ -21,13 +21,28 @@
     <br> <br>
     <script>
       //This will create the table for the Items
-      var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
-      "Fountain Drink"];
-      var prices = ["5.99", "5.99", "1.49"];
+      //var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
+      //"Fountain Drink"];
+      //var prices = ["5.99", "5.99", "1.49"];
+      var order;
+      var foodItem = [];
+      var prices = [];
       var table = document.createElement('table'),
           thead = document.createElement('thead'),
           tbody = document.createElement('tbody'),
           th, tr, td;
+
+          //get the food items and prices from the main.js
+          order = localStorage.getItem('theOrder');
+          order = JSON.parse(order);
+
+          for (var i = 0; i < Object.keys(order).length; i++) {
+
+            foodItem.push(Object.keys(order)[i]);
+
+            prices.push(order[Object.keys(order)[i]]);
+          }
+
 
           table.setAttribute("id", "order");
 
@@ -82,6 +97,8 @@
 
         subtotalNumber = subtotalNumber + priceOfItem;
       }
+
+      subtotalNumber = subtotalNumber.toFixed(2);
 
       var table = document.createElement('table'),
           tbody = document.createElement('tbody'),

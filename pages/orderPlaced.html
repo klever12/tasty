@@ -9,13 +9,28 @@
         <h1>Order Placed!</h1>
 
         <script>
-          var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
-          "Fountain Drink"];
-          var prices = ["5.99", "5.99", "1.49"]
+          //var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
+          //"Fountain Drink"];
+          //var prices = ["5.99", "5.99", "1.49"]
+          var foodItem = [];
+          var prices = [];
           var table = document.createElement('table'),
               thead = document.createElement('thead'),
               tbody = document.createElement('tbody'),
               th, tr, td;
+
+
+              //get the food items
+              order = localStorage.getItem('theOrder');
+              localStorage.removeItem('theOrder');
+              order = JSON.parse(order);
+
+              for (var i = 0; i < Object.keys(order).length; i++) {
+
+                foodItem.push(Object.keys(order)[i]);
+
+                prices.push(order[Object.keys(order)[i]]);
+              }
 
               table.setAttribute("id", "order");
 
@@ -72,8 +87,8 @@
 
           </script>
 
-          <h4>Paid With Meal Swipe and Flex- </h4>
-          <h5>117 Swipes, 292.74 Flex Remaining</h5>
+          <!-- <h4>Paid With Meal Swipe and Flex- </h4>
+          <h5>117 Swipes, 292.74 Flex Remaining</h5> -->
 
           <h2>Estimated Wait Time: </h2>
           <h2>27 Minutes</h2>

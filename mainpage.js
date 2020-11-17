@@ -2,14 +2,18 @@ const electron = require("electron");
 const url = require("url");
 const path = require("path");
 
-const {app, BrowserWindow, Menu} = electron;
+const {app, BrowserWindow, Menu, ipcMain, ipcRenderer} = electron;
 
 let mainWindow;
 
 //Listen for the app to be ready
 app.on('ready', function(){
   //create new window
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
 
   //Load html into window
   mainWindow.loadURL(url.format({
@@ -27,6 +31,20 @@ app.on('ready', function(){
   //Insert the menu
   Menu.setApplicationMenu(mainMenu);
 });
+
+//catch the order
+/*ipcMain.on('order', function(e, order){
+  console.log("Here is the order: ");
+  console.log(order);
+
+  console.log("Here is the key of the order: ");
+  console.log(Object.keys(order)[0]);
+
+  const theOrder = order;
+  console.log("Here is the new the order: ");
+  console.log(theOrder);
+  mainWindow.webContents.send('theOrder', theOrder);
+});*/
 
 // create menu template for the app
 const mainMenuTemplate = [
