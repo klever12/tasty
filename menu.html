@@ -133,6 +133,11 @@
       function addtoOrder(dish, price)
       {
         order[dish] = price;
+        document.getElementById("bt").innerHTML = "Order: ".concat(Object.keys(order).length);
+        document.getElementById("bt2").innerHTML = "Order: ".concat(Object.keys(order).length);
+        document.getElementById("banner").style.display = "block";
+        document.getElementById("banner").innerHTML = dish.concat(" added to order");
+        document.getElementById("banner").style.position = "sticky";
       }
 
       function sendOrder()
@@ -172,11 +177,23 @@
       .dropdown:hover .dropdown-content {
         display: block;
       }
+      .success {
+        background-color: #ddffdd;
+        border-left: 6px solid #4CAF50;
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        top: 0;
+        /* transition: opacity 0.6s; */
+        display: none;
+      }
     </style>
 
     <body>
-      <button onclick="sendOrder()", style="text-align:center">
-        Go
+      <div class="success" id="banner">
+      </div>
+
+      <button id = bt onclick="sendOrder()", style="text-align:center; float:right">
+        Order: 0
       </button>
 
       <br><br>
@@ -464,8 +481,8 @@
           <span style="float:right;"> $2.29 </span></span>
       </div>
 
-      <button onclick="sendOrder()", style="text-align:center">
-        Go
+      <button id = bt2 onclick="sendOrder()", style="text-align:center; float:right">
+        Order: 0
       </button>
 
     </body>
