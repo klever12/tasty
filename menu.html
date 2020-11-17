@@ -137,7 +137,14 @@
 
       function sendOrder()
       {
-        ipcRenderer.send('order', order);
+
+        console.log(order);
+
+        localStorage.setItem('theOrder', JSON.stringify(order));
+        //ipcRenderer.send('order', order);
+        document.location.href = 'pages/checkout.html';
+        //setTimeout(function(){ document.location.href = 'pages/checkout.html';}, 1000);
+
       }
 
     </script>
@@ -467,6 +474,7 @@
       <button onclick="sendOrder()", style="text-align:center">
         Go
       </button>
+
 
     </body>
 
