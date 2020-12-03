@@ -9,9 +9,6 @@
         <h1>Order Placed!</h1>
 
         <script>
-          //var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
-          //"Fountain Drink"];
-          //var prices = ["5.99", "5.99", "1.49"]
           var foodItem = [];
           var prices = [];
           var table = document.createElement('table'),
@@ -66,10 +63,28 @@
 
           <script>
             var total = "Total: ";
-            var price = "13.47";
+            var orderTable = document.getElementById('order');
+            var orderTotal = 0;
             var table = document.createElement('table'),
                 tbody = document.createElement('tbody'),
                 th, tr, td;
+
+
+                for (var i = 0; i < orderTable.rows.length; i++) {
+
+                  var row = orderTable.rows[i];
+
+                  var td = row.getElementsByTagName('td');
+
+                  var secondCell = td[1];
+
+                  var priceOfItem = secondCell.innerHTML;
+                  priceOfItem = parseFloat(priceOfItem);
+
+                  orderTotal = orderTotal + priceOfItem;
+                }
+
+                orderTotal = orderTotal.toFixed(2);
 
                 table.appendChild(tbody);
 
@@ -81,7 +96,7 @@
                 tr.appendChild(td);
 
                 td = document.createElement('td');
-                td.innerHTML = price;
+                td.innerHTML = orderTotal;
                 tr.appendChild(td);
                 tbody.appendChild(tr);
 

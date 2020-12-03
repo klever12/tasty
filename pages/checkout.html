@@ -21,9 +21,6 @@
     <br> <br>
     <script>
       //This will create the table for the Items
-      //var foodItem = ["Hummus & Veggie Wrap", "Hummus & Veggie Wrap",
-      //"Fountain Drink"];
-      //var prices = ["5.99", "5.99", "1.49"];
       var order;
       var foodItem = [];
       var prices = [];
@@ -70,10 +67,78 @@
 
             //add the prices to the other column of the table
             td = document.createElement('td');
-            td.setAttribute("id", i)
+            //td.setAttribute("id", i)
             td.innerHTML = prices[i];
             tr.appendChild(td);
+
+            //add a button to remove item from order
+            td = document.createElement('td');
+            var removeButton = document.createElement('input');
+            removeButton.type = "button";
+            removeButton.value = "Remove Item";
+            removeButton.setAttribute("id", i);
+            removeButton.onclick = function () {
+              deleteItemRow(this.id);
+
+            };
+            td.appendChild(removeButton);
+            tr.appendChild(td);
+
             tbody.appendChild(tr);
+
+
+            function deleteItemRow(id) {
+              var totalTable = document.getElementById('totalTable');
+              var payTable = document.getElementById('payTable');
+              var order;
+              var orderPriceTotal = 0;
+              var currentButton = document.getElementById(id);
+              var row = currentButton.parentNode.parentNode;
+              var td = row.getElementsByTagName('td');
+              var foodItemDeleted = td[0].innerHTML;
+
+              order = localStorage.getItem('theOrder');
+              order = JSON.parse(order);
+
+              if (payTable.rows.length > 1) {
+                alert("Please restart payment methods before removing items from order")
+              }
+              else {
+
+                delete order[foodItemDeleted];
+
+                localStorage.setItem('theOrder', JSON.stringify(order));
+
+                row.parentNode.removeChild(row);
+
+                //get the new order total after removal
+                for (var i = 0; i < Object.keys(order).length; i++) {
+
+                  var itemPrice = order[Object.keys(order)[i]];
+                  itemPrice = parseFloat(itemPrice);
+
+                  orderPriceTotal = orderPriceTotal + itemPrice;
+                }
+
+                orderPriceTotal = orderPriceTotal.toFixed(2);
+
+
+                //update the payTable subtotal with orderPriceTotal
+                var payTableFirstRow = payTable.rows[0];
+                var payTableCells = payTableFirstRow.getElementsByTagName('td');
+                var subtotalCell = payTableCells[1];
+                subtotalCell.innerHTML = orderPriceTotal;
+
+
+                //update totalTable total with orderPriceTotal
+                var totalTableFirstRow = totalTable.rows[0];
+                var totalTableCells = totalTableFirstRow.getElementsByTagName('td');
+                var totalCell = totalTableCells[1];
+                totalCell.innerHTML = orderPriceTotal;
+              }
+
+            }
+
           }
     </script>
 
@@ -167,14 +232,14 @@
       <button type="button" id="swipeButton">Pay With Meal Swipe</button>
       &nbsp;
       <button type="submit" id="flexButton">Pay With Flex</button>
+      &nbsp;
+      <button type="submit" id="restartPay">Restart Payment Method(s)</button>
     </div>
 
     <br><br><br>
     <div class="checkoutButtons">
       <button type="submit" id="cancel"> Cancel/Return to Menu</button>
       &nbsp;
-      &nbsp;
-      <button type="submit" id="restartPay">Restart Payment Method(s)</button>
       <button type="submit" id="placeOrder">Place Order</button>
     </div>
 
@@ -200,7 +265,7 @@
         var swipesAvailable = parseFloat(mealSwipesRef.innerHTML);
         var newSwipesAvailable;
 
-        if(parseFloat(currentTotal) > 0){
+      if(parseFloat(currentTotal) > 0){
         if(swipesAvailable > 0){
           tr = document.createElement('tr');
           td = document.createElement('td');
