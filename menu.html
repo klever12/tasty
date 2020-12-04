@@ -172,6 +172,12 @@
         display: block;
         padding: 20px
       }
+      .dropdown:hover {
+        box-shadow: 0px 15px 25px -5px
+      }
+      .dropdown:active {
+        box-shadow: 0px 4px 8px
+      }
       .dropdown-content {
         display: none;
         position: absolute;
@@ -183,6 +189,8 @@
       }
       .dropdown:hover .dropdown-content {
         display: block;
+        background-color: #E3183F;
+        color: #FFFFFF;
       }
       .success {
         background-color: #ddffdd;
@@ -206,7 +214,7 @@
       <br><br>
       <div class="dropdown" onclick=
         "addtoOrder('Soup', '3.99')">
-        <span> Soup of the Week <span style="float:right;"> $3.99 </span></span>
+        <span> Chicken Poblano <span style="float:right;"> $3.99 </span></span>
         <div class="dropdown-content">
           <p>soup type goes here</p>
         </div>
