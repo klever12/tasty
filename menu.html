@@ -129,16 +129,20 @@
       }
 
       var order = {};
+      var customize = {};
       var quantity;
+      var specialNote;
 
       function addtoOrder(dish, price)
       {
         dish = localStorage.getItem("ds", dish);
         price = localStorage.getItem("pr", price);
         quantity = window.localStorage.getItem("q");
+        specialNote = window.localStorage.getItem("s");
         console.log(quantity);
         price = price * quantity;
         order[dish] = price;
+        customize[specialNote] = quantity;
         document.getElementById("bt").innerHTML = "Order: ".concat(Object.keys(order).length);
         document.getElementById("bt2").innerHTML = "Order: ".concat(Object.keys(order).length);
         document.getElementById("banner").style.display = "block";
@@ -152,6 +156,7 @@
         console.log(order);
 
         localStorage.setItem('theOrder', JSON.stringify(order));
+        localStorage.setItem('theCustomize', JSON.stringify(customize));
         //ipcRenderer.send('order', order);
         document.location.href = 'pages/checkout.html';
         //setTimeout(function(){ document.location.href = 'pages/checkout.html';}, 1000);
@@ -159,7 +164,7 @@
       }
 
     </script>
-    
+
     <script type="text/javascript">
 
     const ipc = require('electron').ipcRenderer;
@@ -195,7 +200,7 @@
       //alert(subwin.opener.name);
     }
     </script>
-    
+
     <form action="/action_page.php">
       <input type="checkbox" id="Vegetarian" name="Vegetarian" value="Vegetarian"
         onclick= "removeVT(this)">
