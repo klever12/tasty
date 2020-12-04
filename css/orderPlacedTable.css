@@ -5,3 +5,8 @@
 #order th,#order td{
  border:1px solid #000;
 }
+
+#order th {
+  background-color: red;
+  color: white;
+}
