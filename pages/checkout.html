@@ -238,13 +238,14 @@
 
     <br><br><br>
     <div class="checkoutButtons">
-      <button type="submit" id="cancel"> Cancel/Return to Menu</button>
+      <button type="submit" id="cancel"> Add More Items/Return to Menu</button>
       &nbsp;
       <button type="submit" id="placeOrder">Place Order</button>
     </div>
 
     <script>
       //add button functionality for the meal swipe and flex buttons
+      var orderTable = document.getElementById('order');
       var totalTable = document.getElementById('totalTable');
       var payTable = document.getElementById('payTable');
       var startSwipes = document.getElementById('swipes').innerHTML;
@@ -265,37 +266,42 @@
         var swipesAvailable = parseFloat(mealSwipesRef.innerHTML);
         var newSwipesAvailable;
 
-      if(parseFloat(currentTotal) > 0){
-        if(swipesAvailable > 0){
-          tr = document.createElement('tr');
-          td = document.createElement('td');
-          td.innerHTML = swipe;
-          tr.appendChild(td);
-
-          td = document.createElement('td');
-          td.innerHTML = "7.50";
-          tr.appendChild(td);
-          payTable.getElementsByTagName('tbody')[0].appendChild(tr);
-
-          currentTotal = parseFloat(currentTotal);
-          newTotal = currentTotal - 7.50;
-          newTotal = newTotal.toFixed(2);
-
-          secondCell.innerHTML = newTotal
-
-          newSwipesAvailable = swipesAvailable - 1;
-          newSwipesAvailable = newSwipesAvailable.toFixed(0);
-
-          mealSwipesRef.innerHTML = newSwipesAvailable;
-
+        if(orderTable.rows.length === 0) {
+          alert("No food items in order. Please return to menu and add food items.")
         }
         else {
-        alert("No Meal Swipes Available")
+          if(parseFloat(currentTotal) > 0){
+            if(swipesAvailable > 0){
+              tr = document.createElement('tr');
+              td = document.createElement('td');
+              td.innerHTML = swipe;
+              tr.appendChild(td);
+
+              td = document.createElement('td');
+              td.innerHTML = "7.50";
+              tr.appendChild(td);
+              payTable.getElementsByTagName('tbody')[0].appendChild(tr);
+
+              currentTotal = parseFloat(currentTotal);
+              newTotal = currentTotal - 7.50;
+              newTotal = newTotal.toFixed(2);
+
+              secondCell.innerHTML = newTotal
+
+              newSwipesAvailable = swipesAvailable - 1;
+              newSwipesAvailable = newSwipesAvailable.toFixed(0);
+
+              mealSwipesRef.innerHTML = newSwipesAvailable;
+
+            }
+            else {
+            alert("No Meal Swipes Available")
+            }
+          }
+          else {
+            alert("Amount is Paid")
+          }
         }
-      }
-      else {
-        alert("Amount is Paid")
-      }
       });
 
 
@@ -314,53 +320,58 @@
         var newFlexAvailable;
         var amountPaid;
 
-        if(parseFloat(currentTotal) > 0){
-          if (flexAvailable > 0) {
-            if(flexAvailable > parseFloat(currentTotal)){
-              tr = document.createElement('tr');
-              td = document.createElement('td');
-              td.innerHTML = flex;
-              tr.appendChild(td);
+        if(orderTable.rows.length === 0) {
+          alert("No food items in order. Please return to menu and add food items.")
+        }
+        else {
+          if(parseFloat(currentTotal) > 0){
+            if (flexAvailable > 0) {
+              if(flexAvailable > parseFloat(currentTotal)){
+                tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.innerHTML = flex;
+                tr.appendChild(td);
 
-              td = document.createElement('td');
-              td.innerHTML = "-" + currentTotal;
-              tr.appendChild(td);
-              payTable.getElementsByTagName('tbody')[0].appendChild(tr);
+                td = document.createElement('td');
+                td.innerHTML = "-" + currentTotal;
+                tr.appendChild(td);
+                payTable.getElementsByTagName('tbody')[0].appendChild(tr);
 
-              amountPaid = parseFloat(currentTotal);
+                amountPaid = parseFloat(currentTotal);
 
-              newFlexAvailable = flexAvailable - amountPaid;
-              newFlexAvailable = newFlexAvailable.toFixed(2);
+                newFlexAvailable = flexAvailable - amountPaid;
+                newFlexAvailable = newFlexAvailable.toFixed(2);
 
-              secondCell.innerHTML = 0;
+                secondCell.innerHTML = 0;
 
-              flexRef.innerHTML = newFlexAvailable;
+                flexRef.innerHTML = newFlexAvailable;
+              }
+              else {
+                tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.innerHTML = flex;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerHTML = '-' + flexRef.innerHTML;
+                tr.appendChild(td);
+                payTable.getElementsByTagName('tbody')[0].appendChild(tr);
+
+                newTotal = parseFloat(currentTotal) - flexAvailable;
+                newTotal = newTotal.toFixed(2);
+
+                secondCell.innerHTML = newTotal;
+
+                flexRef.innerHTML = 0;
+              }
             }
             else {
-              tr = document.createElement('tr');
-              td = document.createElement('td');
-              td.innerHTML = flex;
-              tr.appendChild(td);
-
-              td = document.createElement('td');
-              td.innerHTML = '-' + flexRef.innerHTML;
-              tr.appendChild(td);
-              payTable.getElementsByTagName('tbody')[0].appendChild(tr);
-
-              newTotal = parseFloat(currentTotal) - flexAvailable;
-              newTotal = newTotal.toFixed(2);
-
-              secondCell.innerHTML = newTotal;
-
-              flexRef.innerHTML = 0;
+              alert("No Flex Available to Use");
             }
           }
           else {
-            alert("No Flex Available to Use");
+            alert("Amount is paid");
           }
-        }
-        else {
-          alert("Amount is paid");
         }
       });
 
@@ -402,17 +413,23 @@
 
         total = parseFloat(total);
 
-        if (total > 0) {
-          alert("Order has not been paid for yet")
+        if(orderTable.rows.length === 0) {
+          alert("Order cannot be placed. Please return to menu and add food items.")
         }
         else {
-          document.location.href = 'orderPlaced.html';
+          if (total > 0) {
+            alert("Order has not been paid for yet")
+          }
+          else {
+            document.location.href = 'orderPlaced.html';
+          }
         }
+
       });
 
       document.getElementById('cancel').addEventListener("click",
       function(){
-        document.location.href = '../menu.html'
+        document.location.href = '../menu.html';
       });
     </script>
 
