@@ -34,19 +34,6 @@ app.on('ready', function(){
   Menu.setApplicationMenu(mainMenu);
 });
 
-//catch the order
-/*ipcMain.on('order', function(e, order){
-  console.log("Here is the order: ");
-  console.log(order);
-
-  console.log("Here is the key of the order: ");
-  console.log(Object.keys(order)[0]);
-
-  const theOrder = order;
-  console.log("Here is the new the order: ");
-  console.log(theOrder);
-  mainWindow.webContents.send('theOrder', theOrder);
-});*/
 
 // create menu template for the app
 const mainMenuTemplate = [
