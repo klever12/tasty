@@ -1,0 +1,22 @@
+{
+  "name": "tasty",
+  "version": "1.0.0",
+  "description": "Online order for Mom's ",
+  "main": "mainpage.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klever12/tasty.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klever12/tasty/issues"
+  },
+  "homepage": "https://github.com/klever12/tasty#readme",
+  "dependencies": {
+    "electron": "^10.1.5"
+  }
+}
