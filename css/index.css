@@ -78,16 +78,16 @@ p {
 
 }
 
-#firstSlide {
-
+#firstSlide:before {
+  transform: translateZ(-1px) scale(2);
 }
 
 #secondSlide {
-
+  z-index:2;
 }
 
-#thirdSlide {
-
+#thirdSlide :before{
+  transform: translateZ(-1px) scale(2);
 }
 
 #fourthSlide {
