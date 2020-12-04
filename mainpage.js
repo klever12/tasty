@@ -5,13 +5,15 @@ const path = require("path");
 const {app, BrowserWindow, Menu, ipcMain, ipcRenderer} = electron;
 
 let mainWindow;
+let addWindow;
 
 //Listen for the app to be ready
 app.on('ready', function(){
   //create new window
   mainWindow = new BrowserWindow({
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true
     }
   });
 
