@@ -79,15 +79,15 @@ p {
 }
 
 #firstSlide:before {
-  transform: translateZ(-1px) scale(2);
+  
 }
 
 #secondSlide {
-  z-index:2;
+
 }
 
 #thirdSlide :before{
-  transform: translateZ(-1px) scale(2);
+
 }
 
 #fourthSlide {
