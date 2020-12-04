@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customize Page</title>
+  </head>
+  <script>
+    function sendCustomize()
+    {
+      //order[customize] = quantity;
+      //console.log(order);
+      //localStorage.setItem('theCustomize', JSON.stringify(order));
+      //document.location.href = 'menu.html'
+    }
+  </script>
+  <body>
+    <script type="text/javascript">
+      var dish;
+      var price;
+
+      //get the food items and prices from the main.js
+      dish = localStorage.getItem("ds");
+      price = localStorage.getItem("pr");
+
+      document.write(dish.big().bold());
+    </script>
+
+    <div>
+      <label>Enter Quantity</label>
+      <input type="number" id="quantity" value="">
+    </div>
+    <div>
+      <label>Enter Special Instruction ex: No olives</label>
+      <input type="text" id="customize">
+    </div>
+    <button id = bt onclick="getUpdatedOrder();window.close();">
+      Complete Your Customization
+    </button>
+
+    <script type="text/javascript">
+    //get quantity from input
+    //var quantity = document.getElementById("quantity").value;
+    //set quantity on localStorage
+    //localStorage.setItem("q", quantity);
+    //Updated price
+    //price = price * quantity;
+
+    function getUpdatedOrder(){
+      //alert("DONE!")
+      //window.opener.location.addtoOrder(dish, price);
+      //get quantity from input
+      var quantity = document.getElementById("quantity").value;
+      //set quantity on localStorage
+      localStorage.setItem("q", quantity);
+    }
+    </script>
+
+  </body>
+</html>
