@@ -2,6 +2,11 @@
    border-collapse: collapse;
 }
 
+#order th {
+  background-color: red;
+  color: white;
+}
+
 #order th,#order td{
  border:1px solid #000;
 }
