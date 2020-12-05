@@ -30,7 +30,7 @@
     </div>
     <div>
       <label>Enter Special Instruction ex: No olives</label>
-      <input type="text" id="customize">
+      <input type="text" id="specialNote">
     </div>
     <button id = bt onclick="getUpdatedOrder();window.close();">
       Complete Your Customization
@@ -51,6 +51,10 @@
       var quantity = document.getElementById("quantity").value;
       //set quantity on localStorage
       localStorage.setItem("q", quantity);
+      //get special instruction from input
+      var specialNote = document.getElementById("specialNote").value;
+      //set special instruction on localStorage
+      localStorage.setItem("s", specialNote);
     }
     </script>
 
