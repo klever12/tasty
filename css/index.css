@@ -78,16 +78,16 @@ p {
 
 }
 
-#firstSlide:before {
-
+#firstSlide {
+  background-image: url(https://lorempixel.com/output/abstract-q-c-1920-736-1.jpg) ;
 }
 
 #secondSlide {
-
+  background-image: url(https://lorempixel.com/output/abstract-q-c-1085-736-10.jpg);
 }
 
-#thirdSlide :before{
-
+#thirdSlide {
+  background-image: url(https://lorempixel.com/output/abstract-h-c-978-1451-3.jpg);
 }
 
 #fourthSlide {
