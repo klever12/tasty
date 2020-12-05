@@ -5,3 +5,20 @@
 #order th,#order td{
  border:1px solid #000;
 }
+
+#order th {
+  background-color: red;
+  color: white;
+}
+
+#anotherOrder {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
