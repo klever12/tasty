@@ -22,8 +22,11 @@
     <script>
       //This will create the table for the Items
       var order;
+      var customize;
       var foodItem = [];
       var prices = [];
+      var specialNote = [];
+      var quantity = [];
       var table = document.createElement('table'),
           thead = document.createElement('thead'),
           tbody = document.createElement('tbody'),
@@ -40,6 +43,16 @@
             prices.push(order[Object.keys(order)[i]]);
           }
 
+          //get the quantyties and specialNotes from the main.js
+          customize = localStorage.getItem('theCustomize');
+          customize = JSON.parse(customize);
+
+          for (var i = 0; i < Object.keys(order).length; i++) {
+
+            specialNote.push(Object.keys(customize)[i]);
+
+            quantity.push(customize[Object.keys(customize)[i]]);
+          }
 
           table.setAttribute("id", "order");
 
@@ -50,6 +63,14 @@
           //header for the prices
           th = document.createElement('th');
           th.innerHTML="Price";
+          table.appendChild(th);
+          //header for the quantity
+          th = document.createElement('th');
+          th.innerHTML="Quantity";
+          table.appendChild(th);
+          //header for the special notes
+          th = document.createElement('th');
+          th.innerHTML="Special Notes";
           table.appendChild(th);
 
           table.appendChild(thead);
@@ -69,6 +90,16 @@
             td = document.createElement('td');
             //td.setAttribute("id", i)
             td.innerHTML = prices[i];
+            tr.appendChild(td);
+
+            //add the quantity to the other column of the table
+            td = document.createElement('td');
+            td.innerHTML = quantity[i];
+            tr.appendChild(td);
+
+            //add the specialNote to the other column of the table
+            td = document.createElement('td');
+            td.innerHTML = specialNote[i];
             tr.appendChild(td);
 
             //add a button to remove item from order
