@@ -22,11 +22,6 @@ p {
   color: #333;
 }
 
-#logo {
-  text-align:center;
-  margin-top:-13px;
-}
-
 .slide {
   position: relative;
   padding: 25vh 10%;
